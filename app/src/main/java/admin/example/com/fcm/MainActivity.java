@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -14,9 +15,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        startService(new Intent(this, MyFirebaseMessagingService.class));
-        Intent intent = new Intent("admin.example.com.fcm.MyFirebaseMessagingService");
-        this.startService(intent);
+        if(savedInstanceState.getString("MyKey") != null){
+            Toast.makeText(this, "Code :" +
+                    savedInstanceState.getString("MyKey"),
+                    Toast.LENGTH_LONG).show();
+        }
 
     }
 
